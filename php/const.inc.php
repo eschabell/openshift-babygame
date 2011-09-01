@@ -13,7 +13,7 @@ error_reporting( 0 );
 
 // Database settings.
 //
-define( "DB_SERVER",    "mysql://127.1.7.1:3306/" );
+define( "DB_SERVER",    "127.1.7.1" );
 define( "DB_USER",      "admin" );	
 define( "DB_PASSWORD",  "NWh_ApJd8tGi" );	
 define( "DB_DATABASE",  "babygame" );	

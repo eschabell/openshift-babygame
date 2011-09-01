@@ -2,13 +2,32 @@
 # This is a simple build script, place your post-deploy but pre-start commands
 # in this script.  This script gets executed directly, so it could be python,
 # php, ruby, etc.
-if ! /usr/bin/mysql -u "$OPENSHIFT_DB_USERNAME" --password="$OPENSHIFT_DB_PASSWORD" -h "$OPENSHIFT_DB_HOST" -e "show tables;" $OPENSHIFT_APP_NAME > /dev/null
+#
+set -e
+
+if [ -z $OPENSHIFT_DB_HOST ]
 then
-/usr/bin/mysqladmin -u "$OPENSHIFT_DB_USERNAME" --password="$OPENSHIFT_DB_PASSWORD" -h "$OPENSHIFT_DB_HOST" create "$OPENSHIFT_APP_NAME"
+    echo 1>&2
+    echo "Could not find mysql database.  Please run:" 1>&2
+    echo "rhc-ctl-app -a $OPENSHIFT_APP_NAME -e add-mysql-5.1" 1>&2
+    echo "then make a sample commit (add whitespace somewhere) and re-push" 1>&2
+    echo 1>&2
+    exit 5
 fi
 
-/usr/bin/mysqladmin -u "$OPENSHIFT_DB_USERNAME" --password="$OPENSHIFT_DB_PASSWORD" -h "$OPENSHIFT_DB_HOST" use "$OPENSHIFT_APP_NAME"
-/usr/bin/mysqladmin -u "$OPENSHIFT_DB_USERNAME" --password="$OPENSHIFT_DB_PASSWORD" -h "$OPENSHIFT_DB_HOST" DROP TABLE IF EXISTS guesses
-/usr/bin/mysqladmin -u "$OPENSHIFT_DB_USERNAME" --password="$OPENSHIFT_DB_PASSWORD" -h "$OPENSHIFT_DB_HOST" CREATE TABLE guesses ( timestamp timestamp, name varchar(50) NOT NULL, email varchar(50) NOT NULL, birthdate timestamp, birthsex varchar(4) NOT NULL, babyname varchar(100), PRIMARY KEY (timestamp, name) )
+# Confirm database exists, if not create it
+if ! /usr/bin/mysql -u "$OPENSHIFT_DB_USERNAME" --password="$OPENSHIFT_DB_PASSWORD" -h "$OPENSHIFT_DB_HOST" -e "select * from actions;;" "$OPENSHIFT_APP_NAME" > /dev/null
+then
+    echo
+    echo "Schema not found!  Importing schema from .openshift/action_hooks/baby.sql"
+    echo
+    /usr/bin/mysql -u "$OPENSHIFT_DB_USERNAME" --password="$OPENSHIFT_DB_PASSWORD" -h "$OPENSHIFT_DB_HOST" "$OPENSHIFT_APP_NAME" < "$OPENSHIFT_REPO_DIR/.openshift/action_hooks/baby.sql"
+    echo
+    echo "done."
+else
+    echo "Database found, skipping import."
+fi
 
-
+echo
+echo "DBUSERNAME: $OPENSHIFT_DB_USERNAME   DBHOST: $OPENSHIFT_DB_HOST    APPNAME: $OPENSHIFT_APP_NAME   REPODIR: $OPENSHIFT_REPO_DIR"
+echo

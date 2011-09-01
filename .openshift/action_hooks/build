@@ -2,3 +2,13 @@
 # This is a simple build script, place your post-deploy but pre-start commands
 # in this script.  This script gets executed directly, so it could be python,
 # php, ruby, etc.
+if ! /usr/bin/mysql -u "$OPENSHIFT_DB_USERNAME" --password="$OPENSHIFT_DB_PASSWORD" -h "$OPENSHIFT_DB_HOST" -e "show tables;" $OPENSHIFT_APP_NAME > /dev/null
+then
+/usr/bin/mysqladmin -u "$OPENSHIFT_DB_USERNAME" --password="$OPENSHIFT_DB_PASSWORD" -h "$OPENSHIFT_DB_HOST" create "$OPENSHIFT_APP_NAME"
+fi
+
+/usr/bin/mysqladmin -u "$OPENSHIFT_DB_USERNAME" --password="$OPENSHIFT_DB_PASSWORD" -h "$OPENSHIFT_DB_HOST" use "$OPENSHIFT_APP_NAME"
+/usr/bin/mysqladmin -u "$OPENSHIFT_DB_USERNAME" --password="$OPENSHIFT_DB_PASSWORD" -h "$OPENSHIFT_DB_HOST" DROP TABLE IF EXISTS guesses
+/usr/bin/mysqladmin -u "$OPENSHIFT_DB_USERNAME" --password="$OPENSHIFT_DB_PASSWORD" -h "$OPENSHIFT_DB_HOST" CREATE TABLE guesses ( timestamp timestamp, name varchar(50) NOT NULL, email varchar(50) NOT NULL, birthdate timestamp, birthsex varchar(4) NOT NULL, babyname varchar(100), PRIMARY KEY (timestamp, name) )
+
+

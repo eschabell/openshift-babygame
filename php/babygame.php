@@ -9,8 +9,8 @@
 // Some system variables and db information.
 //error_reporting( E_ALL );  // set to E_ALL for debug.
 $db_server  = $OPENSHIFT_DB_HOST;
-$db_user    = $OPENSHIFT_$db_userNAME;
-$db_pass    = $OPENSHIFT_$db_pass;
+$db_user    = $OPENSHIFT_DB_USERNAME;
+$db_pass    = $OPENSHIFT_DB_PASSWORD;
 $db_name    = "babygame";
 $admin_game = "eric@schabell.org";   // email for notifications.
 $game_log   = "$OPENSHIFT_REPO_DIR/misc/game.log";

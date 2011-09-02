@@ -8,9 +8,6 @@
 
 // Some system variables and db information.
 //error_reporting( E_ALL );  // set to E_ALL for debug.
-$db_server  = $OPENSHIFT_DB_HOST;
-$db_user    = $OPENSHIFT_DB_USERNAME;
-$db_pass    = $OPENSHIFT_DB_PASSWORD;
 $db_name    = "babygame";
 $admin_game = "eric@schabell.org";   // email for notifications.
 $game_log   = "$OPENSHIFT_REPO_DIR/misc/game.log";
@@ -31,7 +28,7 @@ $maxHour    = 24;
 $maxMin     = 59;
 $timestamp  = date( Y ) . "-" . $_POST['birthmonth'] . "-" . $_POST['birthday'] . " " . $_POST['birthhour'] . ":" . $_POST['birthminute'] . ":00";
 	
-$connect = mysql_connect( $db_server, $db_user, $db_pass );
+$connect = mysql_connect( $OPENSHIFT_DB_HOST, $OPENSHIFT_DB_USERNAME, $OPENSHIFT_DB_PASSWORD );
 @mysql_select_db( $db_name, $connect ) or die( "Unable to select database named $db_name.");
 
 // Incomming data.
@@ -71,7 +68,8 @@ function displayOverview( $connect )
 	print "<table width='80%' border='1'>";
 	print "<tr bgcolor='lightyellow'><th>Name:</th><th>Birthdate:</th><th>Sex:</th><th>Baby name:</th></tr>";
 
-	@mysql_select_db( $db_name, $connect ) or die( "Unable to select database");
+	@mysql_select_db( $db_name, $connect ) or die( "Unable to select database named $db_name.");
+
 	$guesses = "SELECT name, birthdate, birthsex, babyname FROM guesses ORDER BY birthdate;";
 	$results = mysql_query( $guesses, $connect );
 
@@ -111,7 +109,7 @@ function displayOverview( $connect )
  */
 function addGuess( $connect, $timestamp, $data )
 {
-	@mysql_select_db( $db_name, $connect ) or die( "Unable to select database");
+	@mysql_select_db( $db_name, $connect ) or die( "Unable to select database named $db_name.");
 		
 	// input our guess.
 	$query  = "INSERT INTO guesses VALUES ( NULL,'" . $data['submitername'] . "', '";
@@ -129,7 +127,7 @@ function addGuess( $connect, $timestamp, $data )
  */
 function duplicateEntry( $connect, $date, $sex )
 {
-	@mysql_select_db( $db_name, $connect ) or die( "Unable to select database");
+	@mysql_select_db( $db_name, $connect ) or die( "Unable to select database named $db_name.");
 	$select = "SELECT birthdate, birthsex FROM guesses;";
 	$selectResults = mysql_query( $select, $connect );
 
@@ -265,7 +263,7 @@ function displayStats( $connect )
 	print "<h2>Some statistics:</h2>";
 	print "<table width='50%' border='1'>";
 	
-	@mysql_select_db( $db_name, $connect ) or die( "Unable to select database");
+	@mysql_select_db( $db_name, $connect ) or die( "Unable to select database named $db_name.");
 	$guesses = "SELECT name, birthdate, birthsex FROM guesses ORDER BY birthdate;";
 	$results = mysql_query( $guesses, $connect );
 	

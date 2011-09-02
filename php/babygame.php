@@ -32,7 +32,7 @@ $maxMin     = 59;
 $timestamp  = date( Y ) . "-" . $_POST['birthmonth'] . "-" . $_POST['birthday'] . " " . $_POST['birthhour'] . ":" . $_POST['birthminute'] . ":00";
 	
 $connect = mysql_connect( $db_server, $db_user, $db_pass );
-@mysql_select_db( $db_name, $connect ) or die( "Unable to select database");
+@mysql_select_db( $db_name, $connect ) or die( "Unable to select database named $db_name.");
 
 // Incomming data.
 #print "DEBUG: POST data comming in - <br> \n";

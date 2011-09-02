@@ -6,16 +6,12 @@
 * Copyrite 2006, GPL.
 */
 
-/**
-* Some system variables and db information.
-*/
+// Some system variables and db information.
 error_reporting( E_ALL );  // set to E_ALL for debug.
-
 $db_server  = $OPENSHIFT_DB_HOST;
 $db_user    = $OPENSHIFT_$db_userNAME;
 $db_pass    = $OPENSHIFT_$db_pass;
 $db_name    = "babygame";
-
 $admin_game = "eric@schabell.org";   // email for notifications.
 $game_log   = "$OPENSHIFT_REPO_DIR/misc/game.log";
 

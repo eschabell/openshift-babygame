@@ -347,7 +347,7 @@ else
 
 	// setup for submitting a guess
 	//
-	require( 'introtext.php' );
+	//require( 'introtext.php' );
 		
 	$today = date( 'Y-m-d' );
 	if ( $end_game <= $today )

@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
 * babygame.php
@@ -363,7 +363,7 @@ else
 	<hr>
 	<h2>Current guesses:</h2>
 
-<?
+<?php
 	displayOverview( $connect );
 	displayStats( $connect );
 	mysql_close( $connect );
@@ -371,6 +371,6 @@ else
 	</center>
 	</body>
 	</html>
-<?
+<?php
 }
 ?>

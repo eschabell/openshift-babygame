@@ -6,7 +6,6 @@
 * Copyrite 2006, GPL.
 */
 
-include_once( 'const.inc.php' );
 /**
 * Some system variables and db information.
 */

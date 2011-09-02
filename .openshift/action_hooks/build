@@ -16,7 +16,7 @@ then
 fi
 
 # Confirm database exists, if not create it
-if ! /usr/bin/mysql -u "$OPENSHIFT_DB_USERNAME" --password="$OPENSHIFT_DB_PASSWORD" -h "$OPENSHIFT_DB_HOST" -e "select * from actions;;" "$OPENSHIFT_APP_NAME" > /dev/null
+if ! /usr/bin/mysql -u "$OPENSHIFT_DB_USERNAME" --password="$OPENSHIFT_DB_PASSWORD" -h "$OPENSHIFT_DB_HOST" -e "select * from babygame;;" "$OPENSHIFT_APP_NAME" > /dev/null
 then
     echo
     echo "Schema not found!  Importing schema from .openshift/action_hooks/baby.sql"

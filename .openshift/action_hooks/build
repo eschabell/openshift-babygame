@@ -15,8 +15,17 @@ then
     exit 5
 fi
 
+# check for database.
+if ! /usr/bin/mysql -u "$OPENSHIFT_DB_USERNAME" --password="$OPENSHIFT_DB_PASSWORD" -h "$OPENSHIFT_DB_HOST" -e "show tables;" $OPENSHIFT_APP_NAME > /dev/null
+then
+    echo 1>&2
+    echo "Could not find mysql database. " 1>&2
+    echo "Creating database for application named: $OPENSHIFT_APP_NAME." 1 >&2
+    /usr/bin/mysqladmin -u "$OPENSHIFT_DB_USERNAME" --password="$OPENSHIFT_DB_PASSWORD" -h "$OPENSHIFT_DB_HOST" create "$OPENSHIFT_APP_NAME"
+fi
+
 # Confirm database exists, if not create it
-if ! /usr/bin/mysql -u "$OPENSHIFT_DB_USERNAME" --password="$OPENSHIFT_DB_PASSWORD" -h "$OPENSHIFT_DB_HOST" -e "select * from babygame;;" "$OPENSHIFT_APP_NAME" > /dev/null
+if ! /usr/bin/mysql -u "$OPENSHIFT_DB_USERNAME" --password="$OPENSHIFT_DB_PASSWORD" -h "$OPENSHIFT_DB_HOST" -e "select * from guesses;;" "$OPENSHIFT_APP_NAME" > /dev/null
 then
     echo
     echo "Schema not found!  Importing schema from .openshift/action_hooks/baby.sql"
@@ -29,5 +38,5 @@ else
 fi
 
 echo
-echo "DBUSERNAME: $OPENSHIFT_DB_USERNAME   DBHOST: $OPENSHIFT_DB_HOST    APPNAME: $OPENSHIFT_APP_NAME   REPODIR: $OPENSHIFT_REPO_DIR"
+echo "DBUSERNAME: $OPENSHIFT_DB_USERNAME   DBHOST: $OPENSHIFT_DB_HOST    DBNAME: $OPENSHIFT_APP_NAME   REPODIR: $OPENSHIFT_REPO_DIR"
 echo

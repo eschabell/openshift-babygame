@@ -25,7 +25,7 @@ $thisHour   = 18;          // isabel birth hour.
 $thisMin    = 41;          // isabel birth min.
 $maxHour    = 24;
 $maxMin     = 59;
-$timestamp  = date( Y ) . "-" . $_POST['birthmonth'] . "-" . $_POST['birthday'] . " " . $_POST['birthhour'] . ":" . $_POST['birthminute'] . ":00";
+$timestamp  = date( 'Y' ) . "-" . $_POST['birthmonth'] . "-" . $_POST['birthday'] . " " . $_POST['birthhour'] . ":" . $_POST['birthminute'] . ":00";
 	
 $connect = mysql_connect( $OPENSHIFT_DB_HOST, $OPENSHIFT_DB_USERNAME, $OPENSHIFT_DB_PASSWORD );
 @mysql_select_db( $db_name, $connect ) or die( "Unable to select database named $db_name.");
@@ -156,7 +156,7 @@ function displaySubmissionForm()
 	$thisMin    = 41;          // isabel birth min.
 	$maxHour    = 24;
 	$maxMin     = 59;
-	$timestamp  = date( Y ) . "-" . $_POST['birthmonth'] . "-" . $_POST['birthday'] . " " . $_POST['birthhour'] . ":" . $_POST['birthminute'] . ":00";
+	$timestamp  = date( 'Y' ) . "-" . $_POST['birthmonth'] . "-" . $_POST['birthday'] . " " . $_POST['birthhour'] . ":" . $_POST['birthminute'] . ":00";
 
 	print '<h4>Submissions will close on the due date (' . $due_date . ')</h4>';
 	print '<form action="babygame.php" method="post">';
@@ -204,7 +204,7 @@ function displaySubmissionForm()
 		}
 	}
 
-	print '</select> - ' . date( Y ) . ' <select name="birthhour">';
+	print '</select> - ' . date( 'Y' ) . ' <select name="birthhour">';
 	print '      <option selected value=\'' . $thisHour . '\'>' . $thisHour . '</option>' . "\n";
 	
 	for ( $hour = 0; $hour <= $maxHour; $hour++ )

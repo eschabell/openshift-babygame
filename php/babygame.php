@@ -10,7 +10,6 @@
 //error_reporting( E_ALL );  // set to E_ALL for debug.
 $db_name    = "babygame";
 $admin_game = "eric@schabell.org";   // email for notifications.
-$game_log   = "$OPENSHIFT_REPO_DIR/misc/game.log";
 
 // Family setup.
 $family_name = "Schabell";

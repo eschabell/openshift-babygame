@@ -7,6 +7,23 @@
 */
 
 include_once( 'const.inc.php' );
+/**
+* Some system variables and db information.
+*/
+error_reporting( 0 );  // set to E_ALL for debug.
+
+$db_server  = $OPENSHIFT_DB_HOST;
+$db_user    = $OPENSHIFT_$db_userNAME;
+$db_pass    = $OPENSHIFT_$db_pass;
+$db_name    = "babygame";
+
+$admin_game = "eric@schabell.org";   // email for notifications.
+$game_log   = "$OPENSHIFT_REPO_DIR/misc/game.log";
+
+// Family setup.
+$family_name = "Schabell";
+$due_date   = "November 20th, 2012";
+$end_game   = "2012-12-31";
 
 // Global variables.
 $thisMonth  = 10;          // my b-month.
@@ -19,8 +36,8 @@ $maxHour    = 24;
 $maxMin     = 59;
 $timestamp  = date( Y ) . "-" . $_POST['birthmonth'] . "-" . $_POST['birthday'] . " " . $_POST['birthhour'] . ":" . $_POST['birthminute'] . ":00";
 	
-$connect = mysql_connect( DB_SERVER, DB_USER, DB_PASSWORD );
-@mysql_select_db( DB_DATABASE, $connect ) or die( "Unable to select database");
+$connect = mysql_connect( $db_server, $db_user, $db_pass );
+@mysql_select_db( $db_name, $connect ) or die( "Unable to select database");
 
 // Incomming data.
 #print "DEBUG: POST data comming in - <br> \n";
@@ -59,7 +76,7 @@ function displayOverview( $connect )
 	print "<table width='80%' border='1'>";
 	print "<tr bgcolor='lightyellow'><th>Name:</th><th>Birthdate:</th><th>Sex:</th><th>Baby name:</th></tr>";
 
-	@mysql_select_db( DB_DATABASE, $connect ) or die( "Unable to select database");
+	@mysql_select_db( $db_name, $connect ) or die( "Unable to select database");
 	$guesses = "SELECT name, birthdate, birthsex, babyname FROM guesses ORDER BY birthdate;";
 	$results = mysql_query( $guesses, $connect );
 
@@ -76,7 +93,7 @@ function displayOverview( $connect )
 		}
 		else
 		{
-			if ( $day == ENDSUBMITS ) { print "<tr bgcolor='lightgreen'>"; }
+			if ( $day == $end_game ) { print "<tr bgcolor='lightgreen'>"; }
 			elseif ( $row['birthsex'] == 'boy' ) { print "<tr bgcolor='lightblue'>"; }
 			else { print "<tr bgcolor='lightpink'>"; }
 		}
@@ -99,7 +116,7 @@ function displayOverview( $connect )
  */
 function addGuess( $connect, $timestamp, $data )
 {
-	@mysql_select_db( DB_DATABASE, $connect ) or die( "Unable to select database");
+	@mysql_select_db( $db_name, $connect ) or die( "Unable to select database");
 		
 	// input our guess.
 	$query  = "INSERT INTO guesses VALUES ( NULL,'" . $data['submitername'] . "', '";
@@ -117,7 +134,7 @@ function addGuess( $connect, $timestamp, $data )
  */
 function duplicateEntry( $connect, $date, $sex )
 {
-	@mysql_select_db( DB_DATABASE, $connect ) or die( "Unable to select database");
+	@mysql_select_db( $db_name, $connect ) or die( "Unable to select database");
 	$select = "SELECT birthdate, birthsex FROM guesses;";
 	$selectResults = mysql_query( $select, $connect );
 
@@ -149,7 +166,7 @@ function displaySubmissionForm()
 	$maxMin     = 59;
 	$timestamp  = date( Y ) . "-" . $_POST['birthmonth'] . "-" . $_POST['birthday'] . " " . $_POST['birthhour'] . ":" . $_POST['birthminute'] . ":00";
 
-	print '<h4>Submissions will close on the due date (' . DUEDATE . ')</h4>';
+	print '<h4>Submissions will close on the due date (' . $due_date . ')</h4>';
 	print '<form action="babygame.php" method="post">';
 	print '<input type="hidden" name="action" value="guess">';
 	print '<table width="80%" border="1">';
@@ -253,7 +270,7 @@ function displayStats( $connect )
 	print "<h2>Some statistics:</h2>";
 	print "<table width='50%' border='1'>";
 	
-	@mysql_select_db( DB_DATABASE, $connect ) or die( "Unable to select database");
+	@mysql_select_db( $db_name, $connect ) or die( "Unable to select database");
 	$guesses = "SELECT name, birthdate, birthsex FROM guesses ORDER BY birthdate;";
 	$results = mysql_query( $guesses, $connect );
 	
@@ -318,7 +335,7 @@ if ( $_POST['action'] == 'guess' )
 	$message .= 'See <a href="http://www.schabell.com/babygame/babygame.php" target="_new">Baby Game</a>' . "\n";
 
 	$headers  = 'From: Babygame <info@schabell.com>' . "\r\n";
-	mail( ADMIN_GAME, 'Babygame: Babygame Guess Submission', $message, $headers );
+	mail( $admin_game, 'Babygame: Babygame Guess Submission', $message, $headers );
 ?>
 
 	<center>
@@ -338,7 +355,7 @@ else
 	require( 'introtext.php' );
 		
 	$today = date( 'Y-m-d' );
-	if ( ENDSUBMITS <= $today )
+	if ( $end_game <= $today )
 	{
 		print '<h4>Submissions closed, we are in overtime!</h4>';
 	}

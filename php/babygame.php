@@ -331,12 +331,10 @@ if ( $_POST['action'] == 'guess' )
 
 	$headers  = 'From: Babygame <info@schabell.com>' . "\r\n";
 	mail( $admin_game, 'Babygame: Babygame Guess Submission', $message, $headers );
-?>
 
-	<center>
-	<h2>Your guess has been submitted:</h2>
+	print "<center>";
+	print "<h2>Your guess has been submitted:</h2>";
 
-<? 
 	displayOverview( $connect );
 	displayStats( $connect );
 	print "</center>";
@@ -359,18 +357,15 @@ else
 		displaySubmissionForm();
 	}
 
-?>
-	<hr>
-	<h2>Current guesses:</h2>
+	print "<hr>";
+	print "<h2>Current guesses:</h2>";
 
-<?php
 	displayOverview( $connect );
 	displayStats( $connect );
 	mysql_close( $connect );
-?>
-	</center>
-	</body>
-	</html>
-<?php
+	
+	print "</center>";
+	print "</body>";
+	print "</html>";
 }
 ?>

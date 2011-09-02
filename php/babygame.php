@@ -1,4 +1,4 @@
-<?php
+<?
 
 /**
 * babygame.php

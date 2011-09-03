@@ -12,7 +12,7 @@ include( 'const.inc.php' );
 <!-- MAIN: start building html form. -->
 <html>
 <head>
-	<title>The <?php print FAMILYNAME; ?> Baby Game</title>
+	<title>The <?php print FAMILYNAME; ?> Baby Game Demo</title>
 </head>
 
 <body>
@@ -30,12 +30,9 @@ include( 'const.inc.php' );
 
 <p>
 The baby game is back! You can enter your guess (as many guesses as you like!) for the birth date of the next 
-<?php print FAMILYNAME; ?> family addition. The official due date is <?php print DUEDATE; ?>. Each guess will be registered 
-costs one euro. All proceeds go to the baby's future schooling fund. You will be contacted by us for payment in the future.
+<?php print FAMILYNAME; ?> family addition. The official due date is <?php print DUEDATE; ?>. Just kidding, 
+we are running this application here as a live demo for OpenShift! ;-) 
 <p>
-The winner will receive a gift (not the proceeds!) of extream interest. If there is no clear winner then the 
-closest guess will receive a 'booby prize.' All winners and final decisions rest with the head council in the 
-<?php print FAMILYNAME; ?> family.
 <p>
 Enjoy the fun and good luck!
 <div align="center">

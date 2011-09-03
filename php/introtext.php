@@ -21,7 +21,7 @@ include( 'const.inc.php' );
 <table width="100%" border="0">
 	<tr>
 		<td align="left"><img src="babyblue.jpg" height="130" width="100"></td>
-		<td align="center"><h2>What is your guess for the OpenShfit Baby Game?</h2></td>
+		<td align="center"><h2>What is your guess for the OpenShift Baby Game?</h2></td>
 		<td align="left"><img src="babypink.jpg" height="130" width="100"></td>
 	</tr>
 </table>

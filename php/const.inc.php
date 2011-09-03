@@ -19,10 +19,10 @@ define( "DB_PASSWORD",  $_ENV['OPENSHIFT_DB_PASSWORD'] );
 define( "DB_DATABASE",  "babygame" );	
 
 // admin processors of tech reports:
-define( "ADMIN_GAME", "your@email.com" );
+define( "ADMIN_GAME", "eric@schabell.org" );
 
 // some general info.
-define( "FAMILYNAME", "Schabell" );
+define( "FAMILYNAME", "OpenShift" );
 define( "DUEDATE", "December 14th, 2011" );
 define( "ENDSUBMITS", "2011-12-14" );
 ?>

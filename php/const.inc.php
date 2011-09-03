@@ -13,8 +13,8 @@ error_reporting( 0 );
 
 // Database settings.
 //
-define( "DB_SERVER",    $_ENV['OPENSHIFT_DB_HOST']);
-define( "DB_USER",      $_ENV['OPENSHIFT_DB_USERNAME' );	
+define( "DB_SERVER",    $_ENV['OPENSHIFT_DB_HOST'] );
+define( "DB_USER",      $_ENV['OPENSHIFT_DB_USERNAME'] );	
 define( "DB_PASSWORD",  $_ENV['OPENSHIFT_DB_PASSWORD'] );	
 define( "DB_DATABASE",  "babygame" );	
 

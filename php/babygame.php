@@ -27,7 +27,7 @@ $maxHour    = 24;
 $maxMin     = 59;
 $timestamp  = date( 'Y' ) . "-" . $_POST['birthmonth'] . "-" . $_POST['birthday'] . " " . $_POST['birthhour'] . ":" . $_POST['birthminute'] . ":00";
 	
-$connect = mysql_connect( "$OPENSHIFT_DB_HOST", "$OPENSHIFT_DB_USERNAME", "$OPENSHIFT_DB_PASSWORD" );
+$connect = mysql_connect( $_ENV['OPENSHIFT_DB_HOST'], $_ENV['OPENSHIFT_DB_USERNAME'], $_ENV['OPENSHIFT_DB_PASSWORD'] );
 @mysql_select_db( $db_name, $connect ) or die( "Unable to select database named $db_name.");
 
 // Incomming data.

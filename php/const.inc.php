@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
 * const.inc - standard constants file.

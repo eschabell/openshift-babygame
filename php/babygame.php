@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
 * babygame.php
@@ -324,7 +324,7 @@ if ( $_POST['action'] == 'guess' )
 	<center>
 	<h2>Your guess has been submitted:</h2>
 
-<? 
+<?php 
 	displayOverview( $connect );
 	displayStats( $connect );
 	print "</center>";
@@ -351,7 +351,7 @@ else
 	<hr>
 	<h2>Current guesses:</h2>
 
-<?
+<?php
 	displayOverview( $connect );
 	displayStats( $connect );
 	mysql_close( $connect );
@@ -359,6 +359,6 @@ else
 	</center>
 	</body>
 	</html>
-<?
+<?php
 }
 ?>

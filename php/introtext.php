@@ -29,7 +29,7 @@ include( 'const.inc.php' );
 </div>
 
 <p>
-The baby game is back! You can enter your guess (as many guesses as you like!) for the birth date of the next 
+The baby game is back, this time in the cloud! You can enter your guess (as many guesses as you like!) for the birth date of the next 
 <?php print FAMILYNAME; ?> family addition. The official due date is <?php print DUEDATE; ?>. Just kidding, 
 we are running this application here as a live demo for OpenShift! ;-) 
 <p>

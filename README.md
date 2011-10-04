@@ -3,9 +3,7 @@ Babygame on OpenShift Express
 
 This git repository helps you get up and running quickly w/ a Babygame installation
 on OpenShift Express.  The backend database is MySQL and the database name is the
-same as your application name (using $_ENV['OPENSHIFT_APP_NAME']).  You can call
-your application by whatever name you want (the name of the database will always
-match the application).
+same as your application name (using $_ENV['OPENSHIFT_APP_NAME']).
 
 
 Running on OpenShift
@@ -13,7 +11,7 @@ Running on OpenShift
 
 Create an account at http://openshift.redhat.com/
 
-Create a php-5.3 application (you can call your application whatever you want)
+Create a php-5.3 application
 
     rhc-create-app -l $username -a babygame -t php-5.3
 

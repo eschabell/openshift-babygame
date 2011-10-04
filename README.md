@@ -15,11 +15,11 @@ Create an account at http://openshift.redhat.com/
 
 Create a php-5.3 application (you can call your application whatever you want)
 
-    rhc-create-app -a babygame -t php-5.3
+    rhc-create-app -l $username -a babygame -t php-5.3
 
 Add MySQL support to your application
 
-    rhc-ctl-app -a babygame -e add-mysql-5.1
+    rhc-ctl-app -l $username -a babygame -e add-mysql-5.1
 
 Add this upstream babygame repo
 

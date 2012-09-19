@@ -24,5 +24,5 @@ define( "ADMIN_GAME", "eric@schabell.org" );
 // some general info.
 define( "FAMILYNAME", "OpenShift" );
 define( "DUEDATE", "December 14th, 2011" );
-define( "ENDSUBMITS", "2011-12-14" );
+define( "ENDSUBMITS", "2014-12-14" );
 ?>

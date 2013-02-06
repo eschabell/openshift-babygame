@@ -19,6 +19,9 @@ Add MySQL support to your application
 
     rhc cartridge add -a babygame mysql-5.1
 
+After this you will need to restart the server to initialize the database
+
+    rhc app restart babygame
 
 That's it, you can now checkout your application at:
 

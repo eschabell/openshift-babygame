@@ -13,16 +13,20 @@ Create an account at http://openshift.redhat.com/
 
 Create a php-5.3 application
 
-    rhc app create -a babygame -t php-5.3 --from-code git://github.com/eschabell/openshift-babygame.git
+    rhc app create -a babygame -t php-5.3
 
 Add MySQL support to your application
 
     rhc cartridge add -a babygame mysql-5.1
 
-After this you will need to restart the server to initialize the database
+Pull in the babygame project code
 
-    rhc app restart babygame
-
+    git remote add upstream -m master git://github.com/eschabell/openshift-babygame.git
+    
+    git pull -s recursive -X theirs upstream master
+    
+    git push
+    
 That's it, you can now checkout your application at:
 
     http://babygame-$your_domain.rhcloud.com/babygame.php

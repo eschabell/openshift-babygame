@@ -21,6 +21,8 @@ Add MySQL support to your application
 
 Pull in the babygame project code
 
+    cd babaygame
+    
     git remote add upstream -m master git://github.com/eschabell/openshift-babygame.git
     
     git pull -s recursive -X theirs upstream master

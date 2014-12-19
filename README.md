@@ -1,16 +1,23 @@
 Babygame on OpenShift Express
 ============================
-
 This git repository helps you get up and running quickly w/ a Babygame installation
 on OpenShift Express.  The backend database is MySQL and the database name is the
 same as your application name (using $_ENV['OPENSHIFT_APP_NAME']).
 
 
-Running on OpenShift
-----------------------------
+Install with one click
+----------------------
+[![Click to install OpenShift](http://launch-shifter.rhcloud.com/launch/light/Click to install.svg)](https://openshift.redhat.com/app/console/application_type/custom?&cartridges[]=php-5.3&initial_git_url=https://github.com/eschabell/openshift-babygame.git&name=babygame)
 
-Create an account at http://openshift.redhat.com/
+Note: after creation need to add `mysql-5.1` cartridge.
 
+That's it, you can now checkout your application at:
+
+    http://babygame-$your_domain.rhcloud.com/babygame.php
+
+
+Manual install on OpenShift
+---------------------------
 Create a php-5.3 application
 
     rhc app create -t php-5.3 babygame
@@ -28,10 +35,6 @@ Pull in the babygame project code
     git pull -s recursive -X theirs upstream master
     
     git push
-    
-That's it, you can now checkout your application at:
-
-    http://babygame-$your_domain.rhcloud.com/babygame.php
 
 
 NOTES:
